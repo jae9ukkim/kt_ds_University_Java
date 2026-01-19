@@ -1,0 +1,12 @@
+package exam;
+
+import java.util.Scanner;
+
+public class Q1000 {
+
+	public static void main(String[] args) {
+		 Scanner scan = new Scanner();
+
+	}
+
+}

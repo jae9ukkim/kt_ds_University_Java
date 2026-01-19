@@ -1,0 +1,22 @@
+package exam;
+
+import java.util.Scanner;
+
+public class Q25314 {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		int n = keyboard.nextInt();
+		int i = 0;
+		
+		while(true) {
+			System.out.print("long ");
+			i++;
+			if(n/4 == i) {
+				break;
+			}
+		}
+		System.out.println("int");
+	}
+
+}

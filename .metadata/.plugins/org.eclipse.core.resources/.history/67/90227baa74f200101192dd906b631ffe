@@ -1,0 +1,15 @@
+package exam;
+
+public class ArithmaticQuiz2 {
+
+	public static void main(String[] args) {
+		int processTime = 145;
+		int minutes = 0;
+		int seconds = 0;
+		minutes = 145 / 60;
+		seconds = 145 - (minutes * 60);
+		
+		System.out.println(minutes + "분 " + seconds + "초 입니다.");
+	}
+
+}

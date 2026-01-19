@@ -24,24 +24,24 @@ public class IfExam {
 		}
 
 		randomNumber = 78;
-		
-		if(randomNumber >= 90) {
-			System.out.println("90범위의 숫자숫자입니다."); 
-		} else if(randomNumber >= 80) {
+
+		if (randomNumber >= 90) {
+			System.out.println("90범위의 숫자숫자입니다.");
+		} else if (randomNumber >= 80) {
 			System.out.println("80범위의 숫자입니다.");
-		} else if(randomNumber >= 70) {
+		} else if (randomNumber >= 70) {
 			System.out.println("70범위의 숫자입니다.");
-		} else if(randomNumber >= 60) {
+		} else if (randomNumber >= 60) {
 			System.out.println("60범위의 숫자입니다.");
-		} else if(randomNumber >= 50) {
+		} else if (randomNumber >= 50) {
 			System.out.println("50범위의 숫자입니다.");
-		} else if(randomNumber >= 40) {
+		} else if (randomNumber >= 40) {
 			System.out.println("40범위의 숫자입니다.");
-		} else if(randomNumber >= 30) {
+		} else if (randomNumber >= 30) {
 			System.out.println("30범위의 숫자입니다.");
-		} else if(randomNumber >= 20) {
+		} else if (randomNumber >= 20) {
 			System.out.println("20범위의 숫자입니다.");
-		} else if(randomNumber >= 10) {
+		} else if (randomNumber >= 10) {
 			System.out.println("10범위의 숫자입니다.");
 		} else {
 			System.out.println("0범위의 숫자입니다.");

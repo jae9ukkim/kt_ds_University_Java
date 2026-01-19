@@ -1,0 +1,28 @@
+package exam;
+
+import java.util.Scanner;
+
+public class Q2438 {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		int n = keyboard.nextInt();
+		int i = 0;
+		
+		while(true) {
+			int j = 0;
+			while(true) {
+				System.out.print("*");
+				if(j++ == i) {
+					break;
+				}
+			}
+			System.out.println();
+			if(i++ > n) {
+				break;
+			}
+		}
+
+	}
+
+}

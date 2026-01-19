@@ -1,0 +1,54 @@
+package exam;
+
+public class Q2525 {
+
+	public static void main(String[] args) {
+		int hour = 14;
+		int minute = 30;
+		int cook = 20;
+		
+		int total = hour * 60 + minute + cook;
+		hour = total / 60  % 24;
+		minute = total % 60;
+		
+//		minute += cook;
+//		if(minute >= 60) {
+//			hour += minute / 60;
+//			minute = minute % 60;
+//		}
+//		if(hour > 23) {
+//			hour %= 24;
+//		}		
+		System.out.println(hour + " "+ minute);
+
+		hour = 17;
+		minute = 40;
+		cook = 80;
+		
+		minute += cook;
+		if(minute >= 60) {
+			hour += minute / 60;
+			minute = minute % 60;
+		}
+		if(hour > 23) {
+			hour %= 24;
+		}		
+		System.out.println(hour + " "+ minute);
+		
+		hour = 23;
+		minute = 48;
+		cook = 25;
+		
+		minute += cook;
+		if(minute >= 60) {
+			hour += minute / 60;
+			minute = minute % 60;
+		}
+		if(hour > 23) {
+			hour %= 24;
+		}
+		System.out.println(hour + " "+ minute);
+		
+	}
+
+}

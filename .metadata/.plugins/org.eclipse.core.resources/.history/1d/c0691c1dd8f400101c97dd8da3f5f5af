@@ -1,0 +1,14 @@
+package exam;
+
+public class Q120930 {
+
+	public static void main(String[] args) {
+		int n = 10;
+		int k = 3;
+		
+		n = 64;
+		k = 6;
+		
+	}
+
+}

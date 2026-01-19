@@ -1,0 +1,47 @@
+package exam;
+
+public class IfQuiz2 {
+
+	public static void main(String[] args) {
+		int money = 1_000_000;
+
+		int father = 40;
+		int mother = 36;
+		int daughter = 11;
+
+		int adultOneWayFlightFare = 300_000;
+		int kidOneWayFlightFare = 120_000;
+		
+		//Case 1. 비행 요금을 계산
+		//int flightFare = 0;
+
+		//Case 2. 성인의 수, 아동의 수.
+//		int adultCount = 0;
+//		int kidCount = 0;
+		
+		if (father >= 19) {
+			money -= adultOneWayFlightFare;
+		} else {
+			money -= kidOneWayFlightFare;
+		}
+
+		if (mother >= 19) {
+			money -= adultOneWayFlightFare;
+		} else {
+			money -= kidOneWayFlightFare;
+		}
+
+		if (daughter >= 19) {
+			money -= adultOneWayFlightFare;
+		} else {
+			money -= kidOneWayFlightFare;
+		}
+
+		if (money >= 0) {
+			System.out.println("여행가자!");
+		} else {
+			System.out.println("다음에가자");
+		}
+	}
+
+}

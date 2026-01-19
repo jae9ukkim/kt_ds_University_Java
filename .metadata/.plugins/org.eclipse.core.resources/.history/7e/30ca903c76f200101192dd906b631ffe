@@ -1,0 +1,18 @@
+package exam;
+
+public class ArithmaticQuiz4 {
+
+	public static void main(String[] args) {
+		int subjectA = 100;
+		int subjectB = 85;
+		int subjectC = 95;
+		int subjectD = 68;
+		
+		int totalScore = 0;
+		double score = 0;
+		
+		System.out.println("점수 총합: " + totalScore);
+		System.out.println("학점 결과: " + score);
+	}
+
+}
