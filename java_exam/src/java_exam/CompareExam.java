@@ -5,7 +5,7 @@ public class CompareExam {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int age = 10;
-		
+		// FIXME
 		// age가 10대 인지 확인해본다.
 		// 10 <= age < 20		
 		// 10대가 맞다면 true를 아니라면 false를 출력한다.
