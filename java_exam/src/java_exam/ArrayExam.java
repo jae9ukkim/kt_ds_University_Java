@@ -1,5 +1,7 @@
 package java_exam;
 
+import java.util.Arrays;
+
 public class ArrayExam {
 
 	public static void main(String[] args) {
@@ -70,11 +72,12 @@ public class ArrayExam {
 		for (int i = 0; i < rottoNumb.length; i++) {
 			System.out.print(rottoNumb[i] + " ");
 		}
-		System.out.println();
+		System.out.println();		
 		
 		// 다른 방법 강사님 github에서 보기
 		// while 없이 2중 for문으로 i값을 제어해서 중복 제거
 		// 중복된 값이 나올 경우 index를 돌려서 다른 값이 나올 때까지 반복
+		Arrays.fill(rottoNumb, 0);
 		for(int i = 0; i < rottoNumb.length; i++) {
 			rottoNumb[i] = (int) (Math.random() * 45 + 1);
 			for(int j=0; j < i; j++) {
