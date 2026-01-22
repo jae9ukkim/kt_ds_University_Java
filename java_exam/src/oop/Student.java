@@ -6,6 +6,14 @@ public class Student {
 	int cpp;
 	int csharp;
 	
+	public Student(int java, int python, int cpp, int csharp) {
+		this.java = java;
+		this.python = python;
+		this.cpp = cpp;
+		this.csharp = csharp;
+		
+	}
+	
 	int getSumAllScores() {
 		return java + python + cpp + csharp;
 	}

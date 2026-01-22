@@ -8,6 +8,12 @@ public class Seller {
 	// 자본금
 	int capital;
 	
+	public Seller(int stock, int capital) {
+		this.stock = stock;
+		this.capital = capital;
+		
+	}
+	
 	public void sell(int amount) {
 		if(amount > stock) {
 			amount = stock;

@@ -3,7 +3,7 @@ package oop;
 public class CraneGameMachineTest {
 
 	public static void main(String[] args) {
-		CraneGameMachine cgm = new CraneGameMachine();
+//		CraneGameMachine cgm = new CraneGameMachine();
 		
 //		cgm.dolls = 5;
 //		cgm.doGame();
@@ -17,8 +17,9 @@ public class CraneGameMachineTest {
 //		System.out.println(cgm.dolls);
 //		cgm.insertCoin();
 		
-		cgm.isInsertCoin = false;
-		cgm.dolls = 10;
+//		cgm.isInsertCoin = false;
+//		cgm.dolls = 10;
+		CraneGameMachine cgm = new CraneGameMachine(false, 10);
 		
 		cgm.insertCoin();
 		int result = cgm.doGame();

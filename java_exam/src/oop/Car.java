@@ -28,6 +28,14 @@ public class Car {
 	 */
 	int speed;
 	
+	/**
+	 * 자동차의 모델 명
+	 */
+	String name;
+	public Car(String name) {
+		this.name = name;
+	}
+	
 	// 인스턴스 메소드
 	/**
 	 * <pre>

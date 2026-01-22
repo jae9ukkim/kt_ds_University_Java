@@ -8,6 +8,11 @@ public class Buyer {
 	int maxWeight;
 	int cartWeight;
 	
+	public Buyer(int cash, int maxWeight) {
+		this.cash = cash;
+		this.maxWeight = maxWeight;
+	}
+	
 	public void buy(int amount) {
 		if(amount * 500 + cartWeight > maxWeight) {
 			System.out.println("더 이상 장바구니를 들 수 없습니다");

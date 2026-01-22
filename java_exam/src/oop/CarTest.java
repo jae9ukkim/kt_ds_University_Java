@@ -4,7 +4,7 @@ public class CarTest {
 
 	public static void main(String[] args) {
 		
-		Car kona = new Car();
+		Car kona = new Car("KONA");
 		System.out.println(kona);
 		kona.pressEngineStartButton(); // 코나의 시동을 건다.
 		kona.pressGasolinPedal(20); // speed : 30
@@ -15,7 +15,7 @@ public class CarTest {
 		int konaSpeed = kona.speed;
 		System.out.println("Kona Speed: " + konaSpeed);
 		
-		Car carnival = new Car();
+		Car carnival = new Car("Carnival");
 		System.out.println(carnival);
 
 		carnival.pressGasolinPedal(200);
