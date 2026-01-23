@@ -16,16 +16,17 @@ public class VendingMachine {
 		if(itemNo <0 || itemNo >= this.drinks.length) {
 			return 0;
 		}		
+		if(this.drinks[itemNo].stock == 0) {
+			System.out.println("상품이 품절되었습니다");
+			return 0;
+		}
+
 		if(this.drinks[itemNo].stock < quantity) {
 			quantity = this.drinks[itemNo].stock;
 		}
 
 		this.drinks[itemNo].stock -= quantity;
 		
-		if(this.drinks[itemNo].stock == 0) {
-			System.out.println("상품이 품절되었습니다");
-			return 0;
-		}
 		
 		return this.drinks[itemNo].price * quantity;
 	}

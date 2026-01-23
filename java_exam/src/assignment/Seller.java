@@ -12,7 +12,7 @@ public class Seller {
 		this.stock = stock;
 		this.capital = capital;
 		
-	}
+	}	
 	
 	public void sell(int amount) {
 		if(amount > stock) {
