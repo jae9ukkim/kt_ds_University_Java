@@ -69,7 +69,7 @@ public class Restaurant {
 
 	public void acceptFoodOrder(Customer customer, int foodNo, int quantity) {
 		
-		if(foodNo > this.food.length) {
+		if(foodNo > this.food.length || foodNo < 0) {
 			// 존재하지 않는 메뉴
 			return;
 		}
@@ -96,7 +96,7 @@ public class Restaurant {
 
 	public void acceptAlcoholOrder(Customer customer, int alcoholNo, int quantity) {
 
-		if(alcoholNo > this.alcohol.length) {
+		if(alcoholNo > this.alcohol.length || alcoholNo < 0) {
 			// 존재하지 않는 메뉴
 			return;
 		}
