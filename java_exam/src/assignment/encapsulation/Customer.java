@@ -3,17 +3,56 @@ package assignment.encapsulation;
 public class Customer {
 
 	/**
+	 * 이름
+	 */
+	String name;
+	/**
+	 * 나이
+	 */
+	int age;
+	/**
+	 * 소지금
+	 */
+	int money;
+	/**
 	 * 배부름
 	 */
 	private int fullness;
 	/**
 	 * 취함의 정도
 	 */
-	private double drunkenRate;
+	private double drunkenness;
 	
-	public Customer(int fullness, double drunkenRate) {
+	public Customer(String name, int age, int money, int fullness, double drunkenness) {
+		this.name = name;
+		this.age = age;
+		this.money = money;
 		this.fullness = fullness;
-		this.drunkenRate = drunkenRate;
+		this.drunkenness = drunkenness;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public int getFullness() {
@@ -24,18 +63,18 @@ public class Customer {
 		this.fullness = fullness;
 	}
 
-	public double getDrunkenRate() {
-		return drunkenRate;
+	public double getDrunkenness() {
+		return drunkenness;
 	}
 
-	public void setDrunkenRate(double drunkenRate) {
-		this.drunkenRate = drunkenRate;
+	public void setDrunkenness(double drunkenness) {
+		this.drunkenness = drunkenness;
 	}
 	
 	public void orderFoodFrom(Restaurant rest, int foodNo) {
 		// 주문 전 배부름을 넘는지 확인
-		int foodWeight = rest.getFood()[foodNo].getFeature();
-		if(foodWeight + this.fullness > rest.getFullnessLine()) {
+		int foodWeight = (int)rest.getFood()[foodNo].getSpec();
+		if(foodWeight + this.fullness > rest.getFullnessLimit()) {
 			System.out.println("과식하셨습니다");
 			return;
 		}		
@@ -46,14 +85,14 @@ public class Customer {
 
 	public void orderAlcoholFrom(Restaurant rest, int alcoholNo) {
 		// 주문 전 취기를 넘는지 확인
-		double alcoholRate = rest.getAlcohol()[alcoholNo].getFeature();
-		if(alcoholRate / 10 + this.drunkenRate > rest.getDrunkenRateLine()) {
+		double alcoholRate = rest.getAlcohol()[alcoholNo].getSpec();
+		if(alcoholRate / 10 + this.drunkenness > rest.getAlcoholLimit()) {
 			System.out.println("과음하셨습니다");
 			return;
 		}
 		
 		// 알콜 비율의 10%만큼 취함 정도가 증가
-		this.drunkenRate += alcoholRate / 10;
+		this.drunkenness += alcoholRate / 10;
 	}
 	
 	

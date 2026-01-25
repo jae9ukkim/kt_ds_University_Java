@@ -2,15 +2,28 @@ package assignment.encapsulation;
 
 public class Menu {
 		
+	/** 
+	 * 메뉴명
+	 */
 	String name;
+	/**
+	 * 가격
+	 */
+	int price;
 	/**
 	 * 무게 또는 알콜도수 
 	 */
-	int feature;
+	double spec;
+	/**
+	 * 재고
+	 */
+	int stock;
 	
-	public Menu(String name, int feature) {
+	public Menu(String name, int price, int spec, int stock) {
 		this.name = name;
-		this.feature = feature;		
+		this.price = price;
+		this.spec = spec;		
+		this.stock = stock;
 	}
 
 	public String getName() {
@@ -21,12 +34,28 @@ public class Menu {
 		this.name = name;
 	}
 
-	public int getFeature() {
-		return feature;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setFeature(int feature) {
-		this.feature = feature;
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public double getSpec() {
+		return spec;
+	}
+
+	public void setSpec(double spec) {
+		this.spec = spec;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 	
