@@ -11,6 +11,13 @@ public class CoffeeShop {
 	 */
 	private Coffee hot;
 	
+	public CoffeeShop() { // 생성자 오버로딩
+//		this.hot = new Coffee("기본 아메리카노", 1500, 30);
+//		this.ice = new Coffee("아이스 아메리카노", 1500, 50);
+		this(new Coffee("기본 아메리카노", 1500, 30)
+			, new Coffee("아이스 아메리카노", 1500, 50)); // 생성자 호출
+	}
+	
 	public CoffeeShop(Coffee hot, Coffee ice) {
 		this.hot = hot;
 		this.ice = ice;
@@ -30,6 +37,21 @@ public class CoffeeShop {
 	
 	public void setHot(Coffee hot) {
 		this.hot = hot;
+	}
+	
+	/**
+	 * 가장 첫 번쨰 메뉴를 한 개만 주문한다.
+	 */
+	public int orderCoffee() { 
+		int price = this.orderCoffee(1);
+		return price;
+	}
+	/**
+	 * 메뉴 한 개만 주문한다.
+	 */
+	public int orderCoffee(int menu) { // 가장 쉽고 보편적인 오버로딩 방법
+		int price = this.orderCoffee(menu, 1);
+		return price;
 	}
 	
 	/**

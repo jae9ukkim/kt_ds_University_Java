@@ -8,7 +8,8 @@ public class CoffeeShopTest {
 		Coffee iceCoffee = new Coffee("아이스티", 4000, 60);
 //		Coffee tea = new Coffee("캐모마일티", 5000);
 
-		CoffeeShop starbucks = new CoffeeShop(hotCoffee,iceCoffee);
+		CoffeeShop starbucks = new CoffeeShop();
+//		CoffeeShop starbucks2 = new CoffeeShop(hotCoffee,iceCoffee);
 //		CoffeeShopArray starbucks = new CoffeeShopArray(hotCoffee,iceCoffee,tea);
 		
 		int price = starbucks.orderCoffee(1, 3);
@@ -25,6 +26,11 @@ public class CoffeeShopTest {
 		price = starbucks.orderCoffee(2, 50);
 		System.out.println(price);
 		price = starbucks.orderCoffee(2, 1);
+		System.out.println(price);
+
+		price = starbucks.orderCoffee(); // hot 1개
+		System.out.println(price);
+		price = starbucks.orderCoffee(2); // ice 1개
 		System.out.println(price);
 		
 //		price = starbucks.orderCoffee(2, 6);
