@@ -76,7 +76,10 @@ public class Restaurant {
 		Menu orderFood = this.food[foodNo];
 		String orderMsg = "주문성공";		
 		
-		if(orderFood.getPrice() * quantity > customer.getMoney()) {
+		if(orderFood.getStock() < quantity) {
+			// 재고가 부족하면 주문을 받지 않는다
+			orderMsg = "주문실패 - 재고 부족";
+		} else if(orderFood.getPrice() * quantity > customer.getMoney()) {
 			// 소지금이 부족하면 주문을 받지 않는다
 			orderMsg = "주문실패 - 소지금 부족";
 		} else if(customer.getFullness() + orderFood.getSpec() * quantity > this.getFullnessLimit()) {
@@ -104,7 +107,10 @@ public class Restaurant {
 		String orderMsg = "주문성공";
 		 
 		
-		if(customer.getAge() < 20) {
+		if(orderAlcohol.getStock() < quantity) {
+			// 재고가 부족하면 주문을 받지 않는다
+			orderMsg = "주문실패 - 재고 부족";
+		} else if(customer.getAge() < 20) {
 			// 미성년자
 			orderMsg = "주문실패 - 미성년자";
 		} else if(orderAlcohol.getPrice() * quantity > customer.getMoney()) {
