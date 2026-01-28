@@ -1,8 +1,13 @@
 package com.ktdsuniversity.edu.mart;
 
-public class DepartmentStore {
+public class DepartmentStore extends ConvenienceStore {
 
-	public DepartmentStore() {
+	/**
+	 * 포인트 지급 비율
+	 */
+	private static final double POINT_RATE = 0.5;
 
+	public DepartmentStore(Item[] item) {
+		super(item);
 	}
 }
