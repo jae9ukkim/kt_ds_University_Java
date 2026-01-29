@@ -10,4 +10,9 @@ public class DepartmentStore extends ConvenienceStore {
 	public DepartmentStore(Item[] item) {
 		super(item);
 	}
+
+	public static double getPointRate() {
+		return POINT_RATE;
+	}
+
 }

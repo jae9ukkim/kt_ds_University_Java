@@ -39,6 +39,10 @@ public class Buyer {
 	}
 
 	public void buy(Mart mart, int itemNo, int quantity) {
+		this.buy(mart, itemNo, quantity, 0);
+	}
+
+	public void buy(Mart mart, int itemNo, int quantity, int usePoint) {
 
 		Item item = mart.getItem()[itemNo];
 		int priceToPay = item.getPrice() * quantity;
@@ -46,23 +50,22 @@ public class Buyer {
 		// 구매할 수 있는지 확인
 		if (isBuyable(mart, item, quantity)) {
 			mart.sell(this, itemNo, quantity);
+			if (mart instanceof DepartmentStore ds) {
+
+			}
 			// 편의점이고 포인트가 100 이상일 경우 포인트먼저 차감
 			if (mart instanceof ConvenienceStore cs && this.point >= 100) {
-				// 포인트 먼저 차감
-				if (priceToPay < this.point) {
-					this.point -= priceToPay;
-					priceToPay = 0;
-				} else {
-					priceToPay -= this.point;
-					this.point = 0;
-				}
-				// 남은 포인트에 전체금액의 0.1% 추가
+				// 할인혜택? 선...적용? apply Benefits or Promotions
+				// 포인트 먼저 차감. ConvenienceStore Class에서 하기?
+
+				priceToPay = cs.applyPromotion(this, priceToPay);
+
+				// 포인트 지급. 전체금액에 비율만큼 추가
 				cs.increPoint(this, item.getPrice() * quantity);
-				// 거스름돈 돌려줌
-				cs.refund();
 			}
 			// 소지금 감소
 			this.wallet -= priceToPay;
+			// 거스름돈 돌려줌
 		}
 
 	}

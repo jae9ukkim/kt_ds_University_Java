@@ -15,7 +15,13 @@ public class MartTest {
 
 		Mart mart = new Mart(item);
 
-		buyer.buy(mart, 0, 10);
+//		buyer.buy(mart, 0, 10);
+
+		Mart cs = new ConvenienceStore(item);
+//		buyer.buy(cs, 0, 10);
+
+		Mart ds = new DepartmentStore(item);
+//		buyer.buy(ds, 0, 10);
 
 	}
 }

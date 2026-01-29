@@ -1,0 +1,41 @@
+package com.ktdsuniversity.edu.implement;
+
+public class SamsungSmartRemoteController implements SamsungRemoteController {
+
+	@Override
+	public void turnOn(TV tv) {
+		tv.turnOn();
+	}
+
+	@Override
+	public void turnOff(TV tv) {
+		tv.turnOff();
+	}
+
+	@Override
+	public void changeChannel(TV Tv, int channelNumber) {
+
+	}
+
+	@Override
+	public void changeVolume(TV tv, int volumn) {
+
+	}
+
+	@Override
+	public void runNetflix(SamsungSmartTV tv) {
+		tv.runNetflix();
+
+	}
+
+	@Override
+	public void runMenu(SamsungSmartTV tv) {
+		tv.runMenu();
+	}
+
+	@Override
+	public void runCoupangPlay(SamsungSmartTV tv) {
+		tv.runCoupangPlay();
+	}
+
+}
