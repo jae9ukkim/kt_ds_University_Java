@@ -4,14 +4,16 @@ public class Buyer {
 
 	// 소지금
 	private int wallet;
-	// 등급?
-	private String grade;
 	// 포인트
 	private int point;
 
-	public Buyer(int wallet, String grade) {
+	public Buyer(int wallet) {
+		this(wallet, 0);
+	}
+	
+	public Buyer(int wallet, int point) {
 		this.wallet = wallet;
-		this.grade = grade;
+		this.point = point;
 	}
 
 	public int getWallet() {
@@ -22,14 +24,6 @@ public class Buyer {
 		this.wallet = wallet;
 	}
 
-	public String getGrade() {
-		return this.grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
 	public int getPoint() {
 		return this.point;
 	}
@@ -38,52 +32,66 @@ public class Buyer {
 		this.point = point;
 	}
 
-	public void buy(Mart mart, int itemNo, int quantity) {
-		this.buy(mart, itemNo, quantity, 0);
-	}
-
-	public void buy(Mart mart, int itemNo, int quantity, int usePoint) {
+	/**
+	 * 
+	 * @param mart 판매점
+	 * @param itemNo 상품번호
+	 * @param quantity 구매수량
+	 * @param paidAmount 지불금액
+	 */
+	public void buy(Mart mart, int itemNo, int quantity, int paidAmount) {
 
 		Item item = mart.getItem()[itemNo];
 		int priceToPay = item.getPrice() * quantity;
+		int usePoint = 0;
+		
+		if (mart instanceof DepartmentStore) {
+			if(this.point > 10000) {
+				usePoint = (int)( Math.random() * (this.point+1) );
+			}
+		} else if(mart instanceof ConvenienceStore) {
+			if(this.point > 100) {
+				usePoint = this.point;
+			}
+		}
 
 		// 구매할 수 있는지 확인
-		if (isBuyable(mart, item, quantity)) {
-			mart.sell(this, itemNo, quantity);
-			if (mart instanceof DepartmentStore ds) {
+		if (isBuyable(mart, priceToPay, paidAmount, usePoint)) {
+			// 지불
+			this.wallet -= paidAmount;			
+			mart.sell(this, itemNo, quantity, paidAmount, usePoint);
 
-			}
-			// 편의점이고 포인트가 100 이상일 경우 포인트먼저 차감
-			if (mart instanceof ConvenienceStore cs && this.point >= 100) {
-				// 할인혜택? 선...적용? apply Benefits or Promotions
-				// 포인트 먼저 차감. ConvenienceStore Class에서 하기?
+			// 거스름돈 돌려받음
+			this.wallet += mart.refund();
 
-				priceToPay = cs.applyPromotion(this, priceToPay);
-
-				// 포인트 지급. 전체금액에 비율만큼 추가
-				cs.increPoint(this, item.getPrice() * quantity);
-			}
-			// 소지금 감소
-			this.wallet -= priceToPay;
-			// 거스름돈 돌려줌
 		}
 
 	}
 
-	public boolean isBuyable(Mart mart, Item item, int quantity) {
-
-		// 편의점의 경우 포인트가 100 이상일 경우 포인트도 고려
-		if (mart instanceof ConvenienceStore cs) {
-			if (this.point >= 100 && this.point + this.wallet < item.getPrice() * quantity) {
-				System.out.println("소지금이 부족합니다.");
+	public boolean isBuyable(Mart mart, int price, int paidAmount, int usePoint) {
+		
+		if (mart instanceof DepartmentStore ds) {
+			// 할인 금액 확인
+			price = ds.applyPromotion(this, price);		
+		}		
+		if (mart instanceof ConvenienceStore) {
+			if (usePoint + paidAmount < price) {
+				System.out.println("지불한 돈이 부족합니다. 구매가격: " + price + ", 손님이 지불한 돈: "+ paidAmount);
 				return false;
 			}
 		}
-		// 소지금 확인
-		else if (this.wallet < item.getPrice() * quantity) {
-			System.out.println("소지금이 부족합니다.");
+		// 지불금액 확인
+		else if (paidAmount < price) {
+			System.out.println("지불한 돈이 부족합니다. 구매가격: " + price + ", 손님이 지불한 돈: "+ paidAmount);
 			return false;
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "구매자의 남은 돈: " + wallet + ", 남은 포인트: " + point;
+	}
+	
+	
 }
