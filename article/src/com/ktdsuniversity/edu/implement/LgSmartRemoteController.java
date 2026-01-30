@@ -1,8 +1,4 @@
-package com.ktdsuniversity.edu.coffee;
-
-import com.ktdsuniversity.edu.implement.LgRemoteController;
-import com.ktdsuniversity.edu.implement.LgSmartTV;
-import com.ktdsuniversity.edu.implement.TV;
+package com.ktdsuniversity.edu.implement;
 
 public class LgSmartRemoteController implements LgRemoteController {
 

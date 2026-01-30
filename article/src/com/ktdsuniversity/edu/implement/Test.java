@@ -1,7 +1,5 @@
 package com.ktdsuniversity.edu.implement;
 
-import com.ktdsuniversity.edu.coffee.LgSmartRemoteController;
-
 public class Test {
 
 	public static void main(String[] args) {
