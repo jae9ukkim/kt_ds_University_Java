@@ -1,6 +1,10 @@
 package assignment.encapsulation;
 
-import javax.lang.model.element.QualifiedNameable;
+import assignment.encapsulation.exception.NotEnoughMoneyException;
+import assignment.encapsulation.exception.OutOfStockException;
+import assignment.encapsulation.exception.DrunkenException;
+import assignment.encapsulation.exception.FullException;
+import assignment.encapsulation.exception.UnderAgeException;
 
 public class Restaurant {
 
@@ -10,7 +14,7 @@ public class Restaurant {
 	private int fullnessLimit;
 	private double alcoholLimit;
 	private int account;
-	
+
 	public Restaurant(String name, Menu[] food, Menu[] alcohol, int fullnessLimit, int alcoholLimit) {
 		this.name = name;
 		this.food = food;
@@ -68,57 +72,63 @@ public class Restaurant {
 	}
 
 	public void acceptFoodOrder(Customer customer, int foodNo, int quantity) {
-		
-		if(foodNo > this.food.length || foodNo < 0) {
+
+		if (foodNo > this.food.length || foodNo < 0) {
 			// 존재하지 않는 메뉴
 			return;
 		}
 		Menu orderFood = this.food[foodNo];
-		String orderMsg = "주문성공";		
-		
-		if(orderFood.getStock() < quantity) {
+		String orderMsg = "주문성공";
+
+		if (orderFood.getStock() < quantity) {
 			// 재고가 부족하면 주문을 받지 않는다
 			orderMsg = "주문실패 - 재고 부족";
-		} else if(orderFood.getPrice() * quantity > customer.getMoney()) {
+			throw new OutOfStockException(orderMsg);
+		} else if (orderFood.getPrice() * quantity > customer.getMoney()) {
 			// 소지금이 부족하면 주문을 받지 않는다
 			orderMsg = "주문실패 - 소지금 부족";
-		} else if(customer.getFullness() + orderFood.getSpec() * quantity > this.getFullnessLimit()) {
+			throw new NotEnoughMoneyException(orderMsg);
+		} else if (customer.getFullness() + orderFood.getSpec() * quantity > this.getFullnessLimit()) {
 			// 고객의 배부름과 음식의 무게 합이 기준을 넘으면 주문을 받지 않는다
 			orderMsg = "주문실패 - 과식";
+			throw new FullException(orderMsg);
 		} else {
 			// 음식 무게만큼 배부름 정도가 채워진다
-			customer.setFullness(customer.getFullness() + (int)orderFood.getSpec() * quantity);
+			customer.setFullness(customer.getFullness() + (int) orderFood.getSpec() * quantity);
 			// 가격만큼 손님 소지금 차감, 식당 자본금 증가
 			customer.setMoney(customer.getMoney() - orderFood.getPrice() * quantity);
 			this.setAccount(this.getAccount() + orderFood.getPrice() * quantity);
 			// 음식 재고 감소
-			orderFood.setStock(orderFood.getStock() - quantity); 
+			orderFood.setStock(orderFood.getStock() - quantity);
 		}
 		printOrderState(customer, orderFood, quantity, orderMsg);
 	}
 
 	public void acceptAlcoholOrder(Customer customer, int alcoholNo, int quantity) {
 
-		if(alcoholNo > this.alcohol.length || alcoholNo < 0) {
+		if (alcoholNo > this.alcohol.length || alcoholNo < 0) {
 			// 존재하지 않는 메뉴
 			return;
 		}
 		Menu orderAlcohol = this.alcohol[alcoholNo];
 		String orderMsg = "주문성공";
-		 
-		
-		if(orderAlcohol.getStock() < quantity) {
+
+		if (orderAlcohol.getStock() < quantity) {
 			// 재고가 부족하면 주문을 받지 않는다
 			orderMsg = "주문실패 - 재고 부족";
-		} else if(customer.getAge() < 20) {
+			throw new OutOfStockException(orderMsg);
+		} else if (customer.getAge() < 20) {
 			// 미성년자
 			orderMsg = "주문실패 - 미성년자";
-		} else if(orderAlcohol.getPrice() * quantity > customer.getMoney()) {
+			throw new UnderAgeException(orderMsg);
+		} else if (orderAlcohol.getPrice() * quantity > customer.getMoney()) {
 			// 소지금이 부족하면 주문을 받지 않는다
 			orderMsg = "주문실패 - 소지금 부족";
-		} else if(customer.getDrunkenness() + orderAlcohol.getSpec() * quantity * 0.1 > this.alcoholLimit) {
+			throw new NotEnoughMoneyException(orderMsg);
+		} else if (customer.getDrunkenness() + orderAlcohol.getSpec() * quantity * 0.1 > this.alcoholLimit) {
 			// 고객의 취기와 알콜 10%의 합이 기준을 넘으면 주문을 받지 않는다
 			orderMsg = "주문실패 - 과음";
+			throw new DrunkenException(orderMsg);
 		} else {
 			// 알콜 비율 10%만큼 취기 증가
 			customer.setDrunkenness(customer.getDrunkenness() + orderAlcohol.getSpec() * quantity * 0.1);
@@ -144,17 +154,19 @@ public class Restaurant {
 		System.out.println(msg);
 		System.out.println();
 	}
-	
+
 	public void printRestaurantState() {
 		System.out.println(this.getName() + "상태 확인");
 		System.out.println("=========식사 메뉴=========");
-		
-		for(int i = 0; i < this.food.length; i++) {
-			System.out.println(i+1 + ". " + this.food[i].getName() + " / " + this.food[i].getPrice() + " / " + this.food[i].getSpec() + "g / " + this.food[i].getStock() + "개");
+
+		for (int i = 0; i < this.food.length; i++) {
+			System.out.println(i + 1 + ". " + this.food[i].getName() + " / " + this.food[i].getPrice() + " / "
+					+ this.food[i].getSpec() + "g / " + this.food[i].getStock() + "개");
 		}
 		System.out.println("=========주류 메뉴=========");
-		for(int i = 0; i < this.alcohol.length; i++) {
-			System.out.println(i+1 + ". " + this.alcohol[i].getName() + " / " + this.alcohol[i].getPrice() + " / " + this.alcohol[i].getSpec() + "% / " + this.alcohol[i].getStock() + "개");
+		for (int i = 0; i < this.alcohol.length; i++) {
+			System.out.println(i + 1 + ". " + this.alcohol[i].getName() + " / " + this.alcohol[i].getPrice() + " / "
+					+ this.alcohol[i].getSpec() + "% / " + this.alcohol[i].getStock() + "개");
 		}
 		System.out.println("매출금 : " + this.getAccount());
 		System.out.println();
